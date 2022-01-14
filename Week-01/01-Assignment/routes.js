@@ -1,5 +1,3 @@
-const fs = require('fs');
-
 const requestHandler = (req, res) => {
     const url = req.url;
     const method = req.method;
@@ -27,17 +25,12 @@ const requestHandler = (req, res) => {
         req.on('end', () => {
             const parsedBody = Buffer.concat(body).toString();
             console.log(parsedBody.split('=')[1]);
-            res.statusCode = 302;
-            res.setHeader('Content-Type', 'text/html');
-            res.write('<html>');
-            res.write('<head><title>Assignment Basics</title></head>');
-            res.write('<body><ul><li>');
-            res.write(parsedBody.split('=')[1]);
-            res.write('</li></ul></body>');
-            res.write('</html>');
-            res.end();
         });
+        res.statusCode = 302;
+        res.setHeader('Location', '/');
+        res.end();
     }
+    // Send a HTML response with some Page not found text
 };
 
 // module.exports = requestHandler;
