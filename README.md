@@ -2,7 +2,7 @@
 
 **About this repo:**
 
-The sub-folders represent the diffent lecture stages followed during training (modules).
+The sub-folders represent the different lecture stages followed during training (modules).
 
 **About Heroku:**
 
