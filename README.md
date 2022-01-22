@@ -1,5 +1,4 @@
-# CSE341
-CSE 341: Web Backend Development II
+# CSE341: Web Backend Development II
 
 **About this repo:**
 
