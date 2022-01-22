@@ -1,6 +1,6 @@
 const path = require('path');
 
-const PATH = process.env.PORT || 5000;
+const PATHhrk = process.env.PORT || 5000;
 
 const express = require('express');
 const bodyParser = require('body-parser');
@@ -23,4 +23,4 @@ app.use(shopRoutes);
 
 app.use(errorController.get404);
 
-app.listen(PORT);
+app.listen(PATHhrk);
