@@ -14,7 +14,7 @@ const errorController = require('./controllers/error');
 const User = require('./models/user');
 
 const MONGODB_URI = 
-  process.env.MONGODB_URL || "YOUR MONGO DB URI";
+  process.env.MONGODB_URI || "YOUR MONGO DB URI";
 
 const app = express();
 const store = new MongoDBStore({
