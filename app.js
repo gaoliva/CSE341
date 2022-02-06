@@ -13,12 +13,11 @@ const flash = require('connect-flash');
 const errorController = require('./controllers/error');
 const User = require('./models/user');
 
-const MONGODB_URI = 
-  process.env.MONGODB_URI || "YOUR MONGO DB URI";
+const MONGODB_URL = process.env.MONGODB_URL || "YOUR MONGO DB URI";
 
 const app = express();
 const store = new MongoDBStore({
-  uri: MONGODB_URI,
+  uri: MONGODB_URL,
   collection: 'sessions'
 });
 const csrfProtection = csrf();
@@ -79,7 +78,7 @@ const options = {
 };
 
 mongoose
-  .connect(MONGODB_URI)
+  .connect(MONGODB_URL)
   .then(result => {
     app.listen(PORT);
   })
