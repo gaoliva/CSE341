@@ -7,11 +7,14 @@ const { validationResult } = require('express-validator');
 
 const User = require('../models/user');
 
+const SGRID_API = process.env.SGRID_API || 'Your sendgrid API';
+const SGRID_FROM = process.env.SGRID_FROM || 'sender@email.com'
+
 const transporter = nodemailer.createTransport(
   sendgridTransport({
     auth: {
       api_key:
-        'REMOVED FOR GIT'
+        SGRID_API
     }
   })
 );
@@ -155,7 +158,7 @@ exports.postSignup = (req, res, next) => {
       res.redirect('/login'); 
       return transporter.sendMail({
         to: email,
-        from: 'REMOVED FOR GIT',
+        from: SGRID_FROM,
         subject: 'Signup success!',
         html: '<h1>You successfully signed up!</h1>'
       });   
@@ -209,7 +212,7 @@ exports.postReset = (req, res, next) => {
         res.redirect('/');
         transporter.sendMail({
           to: req.body.email,
-          from: 'REMOVED FOR GIT',
+          from: SGRID_FROM,
           subject: 'Password reset.',
           html: `
             <p>You requested a password reset</p>

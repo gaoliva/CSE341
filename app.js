@@ -1,5 +1,8 @@
 const path = require('path');
 
+const PORT = process.env.PORT || 5000;
+const MONGODB_URL = process.env.MONGODB_URL || "YOUR MONGO DB URL";
+
 const express = require('express');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
@@ -7,16 +10,14 @@ const session = require('express-session');
 const MongoDBStore = require('connect-mongodb-session')(session);
 const csrf = require('csurf');
 const flash = require('connect-flash');
+const cors = require('cors') // Place this with other requires (like 'path' and 'express')
 
 const errorController = require('./controllers/error');
 const User = require('./models/user');
 
-const MONGODB_URI =
-  'URI REMOVED FOR GIT';
-
 const app = express();
 const store = new MongoDBStore({
-  uri: MONGODB_URI,
+  uri: MONGODB_URL,
   collection: 'sessions'
 });
 const csrfProtection = csrf();
@@ -82,10 +83,21 @@ app.use((error, req, res, next) => {
   });
 });
 
+// For Heroku
+const corsOptions = {
+  origin: "https://w06-cse341-goliva.herokuapp.com/",
+  optionsSuccessStatus: 200
+};
+app.use(cors(corsOptions));
+
+const options = {
+  family: 4
+};
+
 mongoose
-  .connect(MONGODB_URI)
+  .connect(MONGODB_URL)
   .then(result => {
-    app.listen(3000);
+    app.listen(PORT);
   })
   .catch(err => {
     console.log(err);
