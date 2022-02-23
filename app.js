@@ -85,7 +85,7 @@ app.use((error, req, res, next) => {
 
 // For Heroku
 const corsOptions = {
-  origin: "https://w06-cse341-goliva.herokuapp.com/",
+  origin: "https://w07-cse341-project1-goliva.herokuapp.com/",
   optionsSuccessStatus: 200
 };
 app.use(cors(corsOptions));
